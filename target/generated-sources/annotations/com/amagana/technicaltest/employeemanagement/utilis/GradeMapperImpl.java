@@ -1,18 +1,15 @@
-package com.lombardinternational.technicaltest.employeemanagement.utilis;
-
-
-import java.util.Date;
-import javax.annotation.processing.Generated;
+package com.amagana.technicaltest.employeemanagement.utilis;
 
 import com.amagana.technicaltest.employeemanagement.dtos.GradeDtoRequest;
 import com.amagana.technicaltest.employeemanagement.dtos.GradeDtoResponse;
 import com.amagana.technicaltest.employeemanagement.entity.Grade;
-import com.amagana.technicaltest.employeemanagement.utilis.GradeMapper;
+import java.util.Date;
+import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-07-26T09:55:54+0200",
-    comments = "version: 1.6.0.RC1, compiler: javac, environment: Java 21.0.2 (Oracle Corporation)"
+    date = "2024-11-15T15:37:59+0100",
+    comments = "version: 1.6.0.RC1, compiler: Eclipse JDT (IDE) 3.40.0.z20241023-1306, environment: Java 17.0.13 (Eclipse Adoptium)"
 )
 public class GradeMapperImpl implements GradeMapper {
 
@@ -45,9 +42,9 @@ public class GradeMapperImpl implements GradeMapper {
 
         Grade.GradeBuilder grade = Grade.builder();
 
-        grade.id( gradeDtoRequest.id() );
-        grade.gradeName( gradeDtoRequest.gradeName() );
         grade.fromDate( gradeDtoRequest.fromDate() );
+        grade.gradeName( gradeDtoRequest.gradeName() );
+        grade.id( gradeDtoRequest.id() );
         grade.toDate( gradeDtoRequest.toDate() );
 
         return grade.build();

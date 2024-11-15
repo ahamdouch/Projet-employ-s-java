@@ -5,6 +5,31 @@ package com.amagana.technicaltest.employeemanagement.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
+
+import com.amagana.technicaltest.employeemanagement.dtos.GradeDtoRequest;
+import com.amagana.technicaltest.employeemanagement.dtos.GradeDtoResponse;
+import com.amagana.technicaltest.employeemanagement.dtos.PageResultDto;
+import com.amagana.technicaltest.employeemanagement.entity.Grade;
+import com.amagana.technicaltest.employeemanagement.exceptions.EntityNotFoundException;
+import com.amagana.technicaltest.employeemanagement.repository.GradeRepository;
+import com.amagana.technicaltest.employeemanagement.service.GradeProjection;
+import com.amagana.technicaltest.employeemanagement.service.GradeService;
+import com.amagana.technicaltest.employeemanagement.utilis.GradeMapper;
+import com.amagana.technicaltest.employeemanagement.utilis.PageDtoMapper;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
+import jakarta.transaction.Transactional;
+import lombok.AllArgsConstructor;
+
 @Service
 @AllArgsConstructor
 @Transactional
@@ -25,7 +50,7 @@ public class GradeServiceImpl implements GradeService {
 
     @Override
     public PageResultDto<GradeProjection> getGradePage(int page, int size) {
-        Pageable pageable = PageRequest.of(page, size, Sort.by("gradeName").ascending());
+        PageRequest pageable = PageRequest.of(page, size, Sort.by("gradeName").ascending());
         Page<GradeProjection> gradeProjections =  gradeRepository.findAllBy(pageable);
         return pageDtoMapper.createPageResult(gradeProjections);
     }

@@ -1,18 +1,15 @@
-package com.lombardinternational.technicaltest.employeemanagement.utilis;
-
-
-import javax.annotation.processing.Generated;
+package com.amagana.technicaltest.employeemanagement.utilis;
 
 import com.amagana.technicaltest.employeemanagement.dtos.EmployeeDtoRequest;
 import com.amagana.technicaltest.employeemanagement.dtos.EmployeeDtoResponse;
 import com.amagana.technicaltest.employeemanagement.entity.Employee;
 import com.amagana.technicaltest.employeemanagement.enums.Gender;
-import com.amagana.technicaltest.employeemanagement.utilis.EmployeeMapper;
+import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-07-26T09:55:54+0200",
-    comments = "version: 1.6.0.RC1, compiler: javac, environment: Java 21.0.2 (Oracle Corporation)"
+    date = "2024-11-15T15:37:59+0100",
+    comments = "version: 1.6.0.RC1, compiler: Eclipse JDT (IDE) 3.40.0.z20241023-1306, environment: Java 17.0.13 (Eclipse Adoptium)"
 )
 public class EmployeeMapperImpl implements EmployeeMapper {
 
@@ -24,15 +21,15 @@ public class EmployeeMapperImpl implements EmployeeMapper {
 
         EmployeeDtoResponse.EmployeeDtoResponseBuilder employeeDtoResponse = EmployeeDtoResponse.builder();
 
-        employeeDtoResponse.id( employee.getId() );
-        employeeDtoResponse.firstName( employee.getFirstName() );
-        employeeDtoResponse.lastName( employee.getLastName() );
-        employeeDtoResponse.jobTitle( employee.getJobTitle() );
-        employeeDtoResponse.contractStartDate( employee.getContractStartDate() );
         employeeDtoResponse.contractEndDate( employee.getContractEndDate() );
-        employeeDtoResponse.gender( employee.getGender() );
+        employeeDtoResponse.contractStartDate( employee.getContractStartDate() );
         employeeDtoResponse.department( employee.getDepartment() );
+        employeeDtoResponse.firstName( employee.getFirstName() );
+        employeeDtoResponse.gender( employee.getGender() );
         employeeDtoResponse.grade( employee.getGrade() );
+        employeeDtoResponse.id( employee.getId() );
+        employeeDtoResponse.jobTitle( employee.getJobTitle() );
+        employeeDtoResponse.lastName( employee.getLastName() );
 
         return employeeDtoResponse.build();
     }
@@ -45,16 +42,16 @@ public class EmployeeMapperImpl implements EmployeeMapper {
 
         Employee.EmployeeBuilder employee = Employee.builder();
 
-        employee.id( employeeDtoRequest.id() );
-        employee.firstName( employeeDtoRequest.firstName() );
-        employee.lastName( employeeDtoRequest.lastName() );
-        employee.jobTitle( employeeDtoRequest.jobTitle() );
-        employee.contractStartDate( employeeDtoRequest.contractStartDate() );
         employee.contractEndDate( employeeDtoRequest.contractEndDate() );
+        employee.contractStartDate( employeeDtoRequest.contractStartDate() );
+        employee.createdUserName( employeeDtoRequest.createdUserName() );
+        employee.firstName( employeeDtoRequest.firstName() );
         if ( employeeDtoRequest.gender() != null ) {
             employee.gender( Enum.valueOf( Gender.class, employeeDtoRequest.gender() ) );
         }
-        employee.createdUserName( employeeDtoRequest.createdUserName() );
+        employee.id( employeeDtoRequest.id() );
+        employee.jobTitle( employeeDtoRequest.jobTitle() );
+        employee.lastName( employeeDtoRequest.lastName() );
 
         return employee.build();
     }
